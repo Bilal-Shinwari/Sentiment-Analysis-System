@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment and Emotion Analysis</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #007bff;
+            text-align: center;
+        }
+        textarea {
+            resize: none;
+        }
+        .btn-analyze {
+            width: 100%;
+        }
+        .result-container {
+            margin-top: 20px;
+        }
+        .result-text {
+            font-weight: bold;
+        }
+        .graph-image {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sentiment and Emotion Analysis</h1>
+        <form method="post">
+            <div class="form-group">
+                <label for="text">Enter your text:</label>
+                <textarea class="form-control" name="text" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-analyze">Analyze</button>
+        </form>
+
+        {% if text %}
+            <div class="result-container mt-4">
+                <h2>Text:</h2>
+                <p>{{ text }}</p>
+
+                <h2 class="result-text">Sentiment:</h2>
+                <p>{{ sentiment }}</p>
+
+                <h2 class="result-text">Emotion Analysis:</h2>
+                {% if plot_image %}
+                    <img src="{{ plot_image }}" alt="Emotion Analysis Graph" class="graph-image">
+                {% else %}
+                    <p>No emotions detected.</p>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+
+    <!-- Bootstrap JS and Popper.js (required for Bootstrap components) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
